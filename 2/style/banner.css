@@ -1,0 +1,44 @@
+.banner-container{
+    width: 1200px;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+.banner-wrapper{
+    width: 1200px;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+}
+.banner-item{
+    width: 1200px;
+    height: 400px;
+    position : absolute;
+    text-align: center;
+    line-height: 400px;
+    font-size: 100px;
+    background: #fff;
+    box-sizing: border-box;
+    border: 5px solid #333;
+}
+.banner-item.banner-active{
+    z-index: 2;
+}
+#next,#prev{
+    height: 60px;
+    width: 40px;
+    background:palegreen;
+    position: absolute;
+    z-index: 999;
+}
+#prev{
+    left: 0;
+    top: 50%;
+    margin-top: -30px;
+}
+#next{
+    right: 0;
+    top: 50%;
+    margin-top: -30px;
+}

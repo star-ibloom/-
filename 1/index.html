@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/index.css">
+</head>
+<body>
+    <div id="font">
+        渲染商品页
+    </div>
+    <div class="goodsList">
+        <ul id="wrap" class="clear">
+            <!-- <li class="item">
+                <img src="https://res0.vmallres.com/pimages//frontLocation/content/1916571/1524129121781.png" alt="">
+                <p>标题标题标题标题标题标题</p>
+                <button >加入购物车</button>
+            </li>
+            <li class="item">
+                    <img src="https://res0.vmallres.com/pimages//frontLocation/content/1916571/1524129121781.png" alt="">
+                    <p>标题标题标题标题标题标题</p>
+                    <button >加入购物车</button>
+                </li>
+                <li class="item">
+                        <img src="https://res0.vmallres.com/pimages//frontLocation/content/1916571/1524129121781.png" alt="">
+                        <p>标题标题标题标题标题标题</p>
+                        <button >加入购物车</button>
+                    </li>
+                    <li class="item">
+                            <img src="https://res0.vmallres.com/pimages//frontLocation/content/1916571/1524129121781.png" alt="">
+                            <p>标题标题标题标题标题标题</p>
+                            <button >加入购物车</button>
+                        </li>
+                        <li class="item">
+                                <img src="https://res0.vmallres.com/pimages//frontLocation/content/1916571/1524129121781.png" alt="">
+                                <p>标题标题标题标题标题标题</p>
+                                <button >加入购物车</button>
+                            </li>
+                            <li class="item">
+                                    <img src="https://res0.vmallres.com/pimages//frontLocation/content/1916571/1524129121781.png" alt="">
+                                    <p>标题标题标题标题标题标题</p>
+                                    <button >加入购物车</button>
+                                </li>
+                                <li class="item">
+                                        <img src="https://res0.vmallres.com/pimages//frontLocation/content/1916571/1524129121781.png" alt="">
+                                        <p>标题标题标题标题标题标题</p>
+                                        <button >加入购物车</button>
+                                    </li>
+                                    <li class="item">
+                                            <img src="https://res0.vmallres.com/pimages//frontLocation/content/1916571/1524129121781.png" alt="">
+                                            <p>标题标题标题标题标题标题</p>
+                                            <button >加入购物车</button>
+                                        </li> -->
+        </ul>
+    </div>
+    <script src="libs/jquery-3.3.1.js"></script>
+
+
+
+    <script>
+        $(function(){
+            var addItem = new AddItem("http://localhost:8080/1/data/data.json","#wrap") 
+        })
+        function AddItem(url,selector){  //创建Additem方法
+            this.url=  url;
+            this.main = $(selector);
+            this.init();     
+        };
+        AddItem.prototype = {   //面向对象
+            constructor : AddItem,
+            init(){
+                this.loading()
+                .then(function(res){
+                    this.json = res.data.list; //json的data 下的 list
+                    this.render()
+                }.bind(this));
+            },
+            loading(){
+                var opt = {
+                    url :this.url
+                }
+                return $.ajax(opt); //返回ajax
+            },
+            render(){
+                var html = "";
+                this.json.forEach(function(item){  //拼接样式
+                    html += `<li class="items">
+                    <img src=${item.image} alt="">
+                    <p>${item.title}</p>
+                    <button data-id=${item.item_id}>加入购物车</button>
+                    </li>`
+                }.bind(this));
+                this.main.html(html); //输出
+            }
+        }
+        
+    </script>
+</body>
+</html>
